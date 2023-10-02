@@ -25,7 +25,8 @@ class OptionWidget extends StatelessWidget {
       toggleMargin: EdgeInsets.zero,
       toggleWidth: 30.0,
       height: 200,
-      foregroundChild: const Icon(Icons.navigate_next_rounded, color: Colors.white, size: 30),
+      foregroundChild: const Icon(Icons.navigate_next_rounded,
+          color: Colors.white, size: 30),
       foregroundBuilder: (context, state, child) {
         return Container(
           child: DecoratedBox(
@@ -37,7 +38,13 @@ class OptionWidget extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: child,
+            child: state.position < 0.5
+                ? child
+                : Icon(
+                    Icons.navigate_next_rounded,
+                    color: Colors.white,
+                    size: state.position * 100,
+                  ),
           ),
         );
       },

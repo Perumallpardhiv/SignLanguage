@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:signlang/routes/route_constants.dart';
-import 'package:signlang/views/screens/home.dart';
 import 'package:signlang/views/screens/learn_signs.dart';
 import 'package:signlang/views/screens/realtime_sign_to_text.dart';
 import 'package:signlang/views/screens/special_sign.dart';
@@ -11,7 +10,7 @@ class RouteManager {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteConstants.home:
-        return MaterialPageRoute(builder: (context) => Home());
+        return MaterialPageRoute(builder: (context) => UploadSignText());
 
       case RouteConstants.upload:
         return MaterialPageRoute(builder: (context) => UploadSignText());
@@ -41,4 +40,3 @@ class RouteManager {
     }
   }
 }
-  
