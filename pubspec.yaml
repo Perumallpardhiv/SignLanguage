@@ -38,6 +38,7 @@ dependencies:
   action_slider: ^0.7.0
   image_picker: ^1.0.4
   get: ^4.6.6
+  tflite: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,9 @@ flutter:
     - assets/signs/
     - assets/lottie/
     - assets/fonts/
+    - assets/models/
+    - assets/models/labels.txt
+    - assets/models/model.tflite
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

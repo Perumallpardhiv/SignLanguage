@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
+import 'package:signlang/getx/getx.dart';
 
 class UploadSignText extends StatefulWidget {
   const UploadSignText({super.key});
@@ -10,18 +10,7 @@ class UploadSignText extends StatefulWidget {
 }
 
 class _UploadSignTextState extends State<UploadSignText> {
-  final ImagePicker image = ImagePicker();
-  XFile? photo;
-  File? file;
-
-  void uploadImage() async {
-    photo = await image.pickImage(source: ImageSource.gallery);
-    if (photo != null) {
-      setState(() {
-        file = File(photo!.path);
-      });
-    }
-  }
+  final UploadImage controller = Get.find<UploadImage>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,88 +40,100 @@ class _UploadSignTextState extends State<UploadSignText> {
             ),
             SizedBox(height: 10),
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 10,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: (file == null)
-                    ? Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.upload_file_rounded,
-                              size: 60,
-                              color: Colors.deepPurple,
-                            ),
-                            const SizedBox(height: 15),
-                            Text(
-                              "Upload Video or Image to continue...",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.deepPurple.shade200,
+              child: Obx(() {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 10,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: (controller.selectedImage.value == null)
+                      ? Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.upload_file_rounded,
+                                size: 60,
+                                color: Colors.deepPurple,
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton.icon(
-                                  onPressed: () async {},
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.deepPurple.shade400,
-                                    shape: const StadiumBorder(),
-                                  ),
-                                  icon: Icon(
-                                    Icons.image_sharp,
-                                    color: Colors.white,
-                                    size: 25,
-                                  ),
-                                  label: Text(
-                                    "Image",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: 1,
-                                      fontSize: 20,
+                              const SizedBox(height: 15),
+                              Text(
+                                "Upload Image to continue...",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.deepPurple.shade200,
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton.icon(
+                                    onPressed: () async {
+                                      controller.takeImage();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Colors.deepPurple.shade400,
+                                      shape: const StadiumBorder(),
+                                    ),
+                                    icon: Icon(
+                                      Icons.camera_alt_rounded,
                                       color: Colors.white,
+                                      size: 25,
+                                    ),
+                                    label: Text(
+                                      "Camera",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1,
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ElevatedButton.icon(
-                                  onPressed: () async {},
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.deepPurple.shade400,
-                                    shape: const StadiumBorder(),
-                                  ),
-                                  icon: const Icon(
-                                    Icons.videocam_rounded,
-                                    color: Colors.white,
-                                    size: 28,
-                                  ),
-                                  label: Text(
-                                    "Video",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: 1,
-                                      fontSize: 20,
+                                  ElevatedButton.icon(
+                                    onPressed: () async {
+                                      controller.uploadImage();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Colors.deepPurple.shade400,
+                                      shape: const StadiumBorder(),
+                                    ),
+                                    icon: const Icon(
+                                      Icons.image_sharp,
                                       color: Colors.white,
+                                      size: 25,
+                                    ),
+                                    label: Text(
+                                      "Upload",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1,
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      : Image.file(
+                          controller.selectedImage.value!,
+                          fit: BoxFit.cover,
                         ),
-                      )
-                    : Image.file(file!, fit: BoxFit.cover),
-              ),
+                );
+              }),
             ),
             const SizedBox(height: 15),
             ElevatedButton.icon(
