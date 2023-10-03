@@ -128,9 +128,9 @@ class _UploadSignTextState extends State<UploadSignText> {
                             ],
                           ),
                         )
-                      : Image.file(
-                          controller.selectedImage.value!,
-                          fit: BoxFit.cover,
+                      : GestureDetector(
+                          onTap: () => controller.takeImage(),
+                          child: Image.file(controller.selectedImage.value!),
                         ),
                 );
               }),
@@ -138,23 +138,7 @@ class _UploadSignTextState extends State<UploadSignText> {
             const SizedBox(height: 15),
             ElevatedButton.icon(
               onPressed: () async {
-                // setState(() {
-                //   loading = true;
-                // });
-                // await Tflite.runModelOnImage(
-                //         path: photo!.path, // required
-                //         asynch: true // defaults to true
-                //         )
-                //     .then((value) {
-                //   print(value![0]["label"].toString());
-                //   String res = value[0]["label"].toString().split(" ").last;
-                //   // print(res);
-                //   loading = false;
-                //   Get.to(() => SpeechScreen(res),
-                //       transition: Transition.leftToRight);
-                //   // print(value!.asMap()["label"]);
-                //   // print(value);
-                // });
+                controller.predictSign();
               },
               style: ElevatedButton.styleFrom(
                 elevation: 0,

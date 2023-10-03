@@ -17,7 +17,7 @@ class UploadImage extends GetxController {
     await Tflite.loadModel(
       model: "assets/models/model.tflite",
       labels: "assets/models/labels.txt",
-    );
+    ).then((value) => print("Model Loaded"));
   }
 
   void uploadImage() async {
@@ -32,5 +32,16 @@ class UploadImage extends GetxController {
     if (photo != null) {
       selectedImage.value = File(photo.path);
     }
+  }
+
+  void predictSign() async {
+    var recognitions = await Tflite.runModelOnImage(
+      path: selectedImage.value!.path,
+      // numResults: 2,
+      // threshold: 0.5,
+      // imageMean: 127.5,
+      // imageStd: 127.5,
+    );
+    print(recognitions);
   }
 }
