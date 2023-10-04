@@ -58,8 +58,9 @@ class OptionView extends StatelessWidget {
                       title,
                       style: const TextStyle(
                         fontSize: 25,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.5,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.75,
+                        fontFamily: "Roboto",
                       ),
                     ),
                   ),

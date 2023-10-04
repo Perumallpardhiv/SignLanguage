@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:signlang/getx/getx.dart';
+import 'package:signlang/getx/translate_text_field.dart';
+import 'package:signlang/getx/upload_imgtoSign.dart';
 import 'package:signlang/routes/route_constants.dart';
 import 'package:signlang/routes/route_manager.dart';
 
@@ -12,7 +13,8 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final UploadImage controller = Get.put(UploadImage());
+  final UploadImage controller1 = Get.put(UploadImage());
+  final TranslateToSign controller2 = Get.put(TranslateToSign());
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:signlang/getx/getx.dart';
+import 'package:signlang/getx/upload_imgtoSign.dart';
 
 class UploadSignText extends StatefulWidget {
   const UploadSignText({super.key});
@@ -10,7 +10,7 @@ class UploadSignText extends StatefulWidget {
 }
 
 class _UploadSignTextState extends State<UploadSignText> {
-  final UploadImage controller = Get.find<UploadImage>();
+  final UploadImage controller1 = Get.find<UploadImage>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _UploadSignTextState extends State<UploadSignText> {
                     ],
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: (controller.selectedImage.value == null)
+                  child: (controller1.selectedImage.value == null)
                       ? Center(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -77,7 +77,7 @@ class _UploadSignTextState extends State<UploadSignText> {
                                 children: [
                                   ElevatedButton.icon(
                                     onPressed: () async {
-                                      controller.takeImage();
+                                      controller1.takeImage();
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -101,7 +101,7 @@ class _UploadSignTextState extends State<UploadSignText> {
                                   ),
                                   ElevatedButton.icon(
                                     onPressed: () async {
-                                      controller.uploadImage();
+                                      controller1.uploadImage();
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -129,8 +129,8 @@ class _UploadSignTextState extends State<UploadSignText> {
                           ),
                         )
                       : GestureDetector(
-                          onTap: () => controller.takeImage(),
-                          child: Image.file(controller.selectedImage.value!),
+                          onTap: () => controller1.takeImage(),
+                          child: Image.file(controller1.selectedImage.value!),
                         ),
                 );
               }),
@@ -138,7 +138,7 @@ class _UploadSignTextState extends State<UploadSignText> {
             const SizedBox(height: 15),
             ElevatedButton.icon(
               onPressed: () async {
-                controller.predictSign();
+                controller1.predictSign();
               },
               style: ElevatedButton.styleFrom(
                 elevation: 0,

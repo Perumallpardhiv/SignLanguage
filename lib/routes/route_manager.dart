@@ -16,18 +16,18 @@ class RouteManager {
       case RouteConstants.upload:
         return MaterialPageRoute(builder: (context) => UploadSignText());
 
-      case RouteConstants.realtime:
-        return MaterialPageRoute(builder: (context) => RealTimeSignText());
-
       case RouteConstants.translate:
         return MaterialPageRoute(builder: (context) => TranslateTextSign());
 
+      case RouteConstants.realtime:
+        return MaterialPageRoute(builder: (context) => RealTimeSignText());
+
       case RouteConstants.learnsigns:
         return MaterialPageRoute(builder: (context) => LearnSigns());
-      
+
       case RouteConstants.specialsigns:
         return MaterialPageRoute(builder: (context) => SpecialSigns());
-      
+
       default:
         return MaterialPageRoute(
           builder: (context) {

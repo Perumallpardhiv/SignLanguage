@@ -44,19 +44,19 @@ class _HomeState extends State<Home> {
                 ),
                 SizedBox(height: 10),
                 OptionWidget(
-                  title: 'RealTime',
-                  description: "Converts Sign to Text On the Spot",
-                  icon: Icons.read_more_outlined,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RouteConstants.realtime),
-                ),
-                SizedBox(height: 10),
-                OptionWidget(
                   title: 'Translate',
                   description: "Translate text to sign language",
                   icon: Icons.translate_rounded,
                   onTap: () =>
                       Navigator.pushNamed(context, RouteConstants.translate),
+                ),
+                SizedBox(height: 10),
+                OptionWidget(
+                  title: 'RealTime',
+                  description: "Converts Sign to Text On the Spot",
+                  icon: Icons.read_more_outlined,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RouteConstants.realtime),
                 ),
                 SizedBox(height: 10),
                 OptionWidget(
