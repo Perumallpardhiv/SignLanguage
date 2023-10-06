@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signlang/getx/translate_text_field.dart';
+import 'package:signlang/routes/route_constants.dart';
 
 class TranslateTextSign extends StatefulWidget {
   const TranslateTextSign({super.key});
@@ -68,7 +69,10 @@ class _TranslateTextSignState extends State<TranslateTextSign> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          if (controller2.controller.value.text.isNotEmpty) {}
+          if (controller2.controller.value.text.isNotEmpty) {
+            controller2.makePresentIndextoZero();
+            Navigator.pushNamed(context, RouteConstants.respectiveSigns);
+          }
         },
         icon: Text(
           "Convert",
