@@ -45,45 +45,42 @@ class _RespectiveSignsState extends State<RespectiveSigns> {
                           'assets/signs/${controller2.controller.value.text[controller2.present_index.value]}.png',
                         )
                       : Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 30),
-                        child: Image.asset(
+                          padding: const EdgeInsets.symmetric(vertical: 45),
+                          child: Image.asset(
                             'assets/signs/_.png',
                             width: 150,
                             height: 150,
                           ),
-                      )),
+                        )),
                 ),
                 Obx(() {
                   if (controller2.controller.value.text.isNotEmpty) {
                     print("Present: ${controller2.present_index.value}");
-                    return SingleChildScrollView(
-                      physics: NeverScrollableScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 40,
-                        alignment: Alignment.center,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          primary: false,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: controller2.controller.value.text.length,
-                          itemBuilder: (context, index) {
-                            return Text(
-                              controller2.controller.value.text[index],
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w500,
-                                color: index == controller2.present_index.value
-                                    ? Colors.green.shade600
-                                    : Colors.black,
-                                letterSpacing: 1.5,
-                                fontFamily: 'Varela',
-                              ),
-                            );
-                          },
-                        ),
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 40,
+                      alignment: Alignment.center,
+                      child: ListView.builder(
+                        controller: controller2.scrollController.value,
+                        shrinkWrap: true,
+                        primary: false,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller2.controller.value.text.length,
+                        itemBuilder: (context, index) {
+                          return Text(
+                            controller2.controller.value.text[index],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                              color: index == controller2.present_index.value
+                                  ? Colors.green.shade600
+                                  : Colors.black,
+                              letterSpacing: 1.5,
+                              fontFamily: 'Varela',
+                            ),
+                          );
+                        },
                       ),
                     );
                   }
@@ -120,6 +117,8 @@ class _RespectiveSignsState extends State<RespectiveSigns> {
                           ),
                         ),
                         onPressed: () {
+                          controller2.scrollListView(
+                              controller2.present_index.value * 27.0);
                           controller2.increasePresentIndex();
                         },
                         child: Text(

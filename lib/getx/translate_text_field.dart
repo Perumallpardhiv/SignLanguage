@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class TranslateToSign extends GetxController {
   Rx<TextEditingController> controller = TextEditingController().obs;
+  Rx<ScrollController> scrollController = ScrollController().obs;
   Rx<int> present_index = 0.obs;
 
   onInit() {
@@ -24,5 +25,13 @@ class TranslateToSign extends GetxController {
     if (present_index.value > 0) {
       present_index.value--;
     }
+  }
+
+  scrollListView(double value) {
+    scrollController.value.animateTo(
+      value,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 }

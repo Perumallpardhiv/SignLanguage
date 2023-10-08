@@ -1,11 +1,14 @@
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:signlang/routes/route_constants.dart';
 import 'package:tflite/tflite.dart';
 
 class UploadImage extends GetxController {
   final ImagePicker image = ImagePicker();
   Rx<File?> selectedImage = Rx<File?>(null);
+  Rx<String> label = '_'.obs;
+  Rx<bool> isLoading = true.obs;
 
   onInit() {
     super.onInit();
@@ -34,14 +37,21 @@ class UploadImage extends GetxController {
     }
   }
 
-  void predictSign() async {
-    var recognitions = await Tflite.runModelOnImage(
-      path: selectedImage.value!.path,
-      // numResults: 2,
-      // threshold: 0.5,
-      // imageMean: 127.5,
-      // imageStd: 127.5,
-    );
-    print(recognitions);
+  Future<void> predictSign() async {
+    if (selectedImage.value?.path != null) {
+      Get.toNamed(RouteConstants.textPage);
+      var recognitions = await Tflite.runModelOnImage(
+        path: selectedImage.value!.path,
+        // numResults: 2,
+        // threshold: 0.5,
+        // imageMean: 127.5,
+        // imageStd: 127.5,
+      );
+      print(recognitions);
+      if (recognitions?.length != 0) {
+        label.value = recognitions![0]['label'];
+      }
+      isLoading.value = false;
+    }
   }
 }

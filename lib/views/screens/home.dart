@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
               child: Text(
                 "Select Required Option...",
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 27.5,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),

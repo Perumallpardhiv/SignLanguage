@@ -39,6 +39,7 @@ dependencies:
   image_picker: ^1.0.4
   get: ^4.6.6
   tflite: ^1.1.2
+  flutter_tts: ^3.8.3
 
 dev_dependencies:
   flutter_test:
