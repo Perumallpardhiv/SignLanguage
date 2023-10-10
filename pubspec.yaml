@@ -40,6 +40,7 @@ dependencies:
   get: ^4.6.6
   tflite: ^1.1.2
   flutter_tts: ^3.8.3
+  camera: ^0.10.5+5
 
 dev_dependencies:
   flutter_test:

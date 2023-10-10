@@ -1,12 +1,17 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:signlang/getx/realtime_signtoText.dart';
 import 'package:signlang/getx/translate_text_field.dart';
 import 'package:signlang/getx/upload_imgtoSign.dart';
 import 'package:signlang/routes/route_constants.dart';
 import 'package:signlang/routes/route_manager.dart';
 
-void main() {
+List<CameraDescription> cameras = [];
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(MyApp());
 }
 
@@ -15,6 +20,7 @@ class MyApp extends StatelessWidget {
 
   final UploadImage controller1 = Get.put(UploadImage());
   final TranslateToSign controller2 = Get.put(TranslateToSign());
+  final RealTimeSigntoText controller3 = Get.put(RealTimeSigntoText());
 
   @override
   Widget build(BuildContext context) {
