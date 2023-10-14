@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signlang/getx/realtime_signtoText.dart';
+import 'package:signlang/routes/route_constants.dart';
 
 class RealTimeSignText extends StatefulWidget {
   const RealTimeSignText({super.key});
@@ -75,7 +76,10 @@ class _RealTimeSignTextState extends State<RealTimeSignText> {
                     shape: StadiumBorder(),
                   ),
                   onPressed: () {
-                    controller1.finalOutput();
+                    if (controller1.result.value != '') {
+                      Navigator.pushNamed(
+                          context, RouteConstants.realtimeFinaltext);
+                    }
                   },
                   child: Row(
                     children: [

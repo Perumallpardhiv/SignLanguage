@@ -3,9 +3,9 @@ import 'package:signlang/routes/route_constants.dart';
 import 'package:signlang/views/screens/home.dart';
 import 'package:signlang/views/screens/learn_signs.dart';
 import 'package:signlang/views/screens/realtime_sign_to_text.dart';
+import 'package:signlang/views/screens/realtime_sign_to_text_final_text.dart';
 import 'package:signlang/views/screens/respective_signs.dart';
 import 'package:signlang/views/screens/respective_text_page.dart';
-import 'package:signlang/views/screens/special_sign.dart';
 import 'package:signlang/views/screens/translate_text_to_sign.dart';
 import 'package:signlang/views/screens/upload_to_Sign.dart';
 
@@ -30,11 +30,11 @@ class RouteManager {
       case RouteConstants.realtime:
         return MaterialPageRoute(builder: (context) => RealTimeSignText());
 
+      case RouteConstants.realtimeFinaltext:
+        return MaterialPageRoute(builder: (context) => RealTimeSignFinalText());
+
       case RouteConstants.learnsigns:
         return MaterialPageRoute(builder: (context) => LearnSigns());
-
-      case RouteConstants.specialsigns:
-        return MaterialPageRoute(builder: (context) => SpecialSigns());
 
       default:
         return MaterialPageRoute(

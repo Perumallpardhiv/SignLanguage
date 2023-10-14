@@ -66,13 +66,6 @@ class _HomeState extends State<Home> {
                   onTap: () =>
                       Navigator.pushNamed(context, RouteConstants.learnsigns),
                 ),
-                SizedBox(height: 10),
-                OptionWidget(
-                    title: 'Special Signs',
-                    description: "Learn special signs",
-                    icon: Icons.import_contacts_rounded,
-                    onTap: () => Navigator.pushNamed(
-                        context, RouteConstants.specialsigns)),
               ],
             ),
           ],

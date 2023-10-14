@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:signlang/main.dart';
 import 'package:tflite/tflite.dart';
@@ -55,9 +56,17 @@ class RealTimeSigntoText extends GetxController {
         else
           result.value += temp.value;
       }
-      Get.snackbar("Sign Converted", "Your sign says : $temp");
+      Get.snackbar(
+        "Sign Converted",
+        "Your sign says : $temp",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.deepPurple.shade400,
+        colorText: Colors.white,
+        borderRadius: 15,
+        margin: EdgeInsets.all(20),
+        isDismissible: true,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
     }
   }
-
-  void finalOutput() {}
 }
